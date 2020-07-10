@@ -14,10 +14,10 @@ class EventSourcer():
         self.add(-num)
 
     def undo(self):
-        bulk_undo(1)
+        self.bulk_undo(1)
 
     def redo(self):
-        bulk_redo(1)
+        self.bulk_redo(1)
 
     def bulk_undo(self, steps: int):
         # take the top steps of the redo stack and move them to the undo stack
