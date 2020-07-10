@@ -20,6 +20,9 @@ class EventSourcer():
         self.bulk_redo(1)
 
     def bulk_undo(self, steps: int):
+        # if steps is negative, do nothing
+        if steps < 0:
+            return
         # take the top steps of the redo stack and move them to the undo stack
         undoVals = self.changes[-steps:]
         undoVals.reverse()
@@ -28,6 +31,9 @@ class EventSourcer():
         self.undoChanges.extend(undoVals)
         
     def bulk_redo(self, steps: int):
+        # if steps is negative, do nothing
+        if steps < 0:
+            return
         # take the top steps of the undo stack and move them to the redo stack
         redoVals = self.undoChanges[-steps:]
         redoVals.reverse()
